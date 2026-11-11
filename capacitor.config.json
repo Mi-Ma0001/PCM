@@ -1,0 +1,24 @@
+{
+  "appId": "tn.planmaintenance.cms",
+  "appName": "Plan maintenance CMS",
+  "webDir": "dist",
+  "android": {
+    "backgroundColor": "#0f3d2e",
+    "allowMixedContent": false,
+    "captureInput": true
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 800,
+      "launchAutoHide": true,
+      "backgroundColor": "#0f3d2e",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "backgroundColor": "#0f3d2e",
+      "style": "DARK",
+      "overlaysWebView": false
+    }
+  }
+}
