@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Plan maintenance CMS</string>
+    <string name="title_activity_main">Plan maintenance CMS</string>
+    <string name="package_name">tn.planmaintenance.cms</string>
+    <string name="custom_url_scheme">tn.planmaintenance.cms</string>
+</resources>
