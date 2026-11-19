@@ -1,1 +1,39 @@
 
+name: APK Android
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
+      - uses: gradle/actions/setup-gradle@v4
+      - run: npm ci
+      - run: npm run android:sync
+      - name: APK de test (debug)
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon
+      - run: |
+          mkdir -p sortie
+          cp android/app/build/outputs/apk/debug/app-debug.apk sortie/optimaint-cms-${{ github.run_number }}-debug.apk
+      - uses: actions/upload-artifact@v5
+        with:
+          name: optimaint-cms-android
+          path: sortie/*.apk
