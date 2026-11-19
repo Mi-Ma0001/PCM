@@ -1,0 +1,1393 @@
+{
+ "source": "Plan_maintenance_VBA.xlsm — résultats produits par la macro VBA GenererPlanMaintenance au 16/10/2026",
+ "dateReference": "2026-10-16",
+ "planning": [
+  {
+   "equipement": "EQ02",
+   "numero": 1,
+   "date": "2026-10-24",
+   "declenchement": "Compteur 4300 h (date estimée)",
+   "etat": "À surveiller",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 1,
+   "date": "2026-10-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ14",
+   "numero": 1,
+   "date": "2026-10-27",
+   "declenchement": "Compteur 3300 h (date estimée)",
+   "etat": "À surveiller",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 1,
+   "date": "2026-10-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 1,
+   "date": "2026-10-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ06",
+   "numero": 1,
+   "date": "2026-11-12",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ07",
+   "numero": 1,
+   "date": "2026-11-15",
+   "declenchement": "Compteur 6000 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ15"
+  },
+  {
+   "equipement": "EQ15",
+   "numero": 1,
+   "date": "2026-11-15",
+   "declenchement": "Date (tous les 6 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ07"
+  },
+  {
+   "equipement": "EQ09",
+   "numero": 1,
+   "date": "2026-11-18",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ11",
+   "numero": 1,
+   "date": "2026-11-22",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 2,
+   "date": "2026-11-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 2,
+   "date": "2026-11-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 2,
+   "date": "2026-11-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 2,
+   "date": "2026-12-02",
+   "declenchement": "Compteur 4800 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ01",
+   "numero": 1,
+   "date": "2026-12-05",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine ; Même date que EQ10"
+  },
+  {
+   "equipement": "EQ10",
+   "numero": 1,
+   "date": "2026-12-05",
+   "declenchement": "Date (tous les 6 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine ; Même date que EQ01"
+  },
+  {
+   "equipement": "EQ13",
+   "numero": 1,
+   "date": "2026-12-15",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ14",
+   "numero": 2,
+   "date": "2026-12-17",
+   "declenchement": "Compteur 3800 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ04",
+   "numero": 1,
+   "date": "2026-12-20",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 3,
+   "date": "2026-12-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 3,
+   "date": "2026-12-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 3,
+   "date": "2026-12-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 3,
+   "date": "2027-01-10",
+   "declenchement": "Compteur 5300 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ03"
+  },
+  {
+   "equipement": "EQ03",
+   "numero": 1,
+   "date": "2027-01-10",
+   "declenchement": "Date (tous les 6 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ02"
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 4,
+   "date": "2027-01-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 4,
+   "date": "2027-01-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ07",
+   "numero": 2,
+   "date": "2027-01-29",
+   "declenchement": "Compteur 7000 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 4,
+   "date": "2027-01-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ14",
+   "numero": 3,
+   "date": "2027-02-06",
+   "declenchement": "Compteur 4300 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ06",
+   "numero": 2,
+   "date": "2027-02-12",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 4,
+   "date": "2027-02-18",
+   "declenchement": "Compteur 5800 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ09"
+  },
+  {
+   "equipement": "EQ09",
+   "numero": 2,
+   "date": "2027-02-18",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ02"
+  },
+  {
+   "equipement": "EQ11",
+   "numero": 2,
+   "date": "2027-02-22",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 5,
+   "date": "2027-02-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 5,
+   "date": "2027-02-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine ; Même date que EQ12"
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 5,
+   "date": "2027-02-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine ; Même date que EQ05"
+  },
+  {
+   "equipement": "EQ01",
+   "numero": 2,
+   "date": "2027-03-05",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ13",
+   "numero": 2,
+   "date": "2027-03-15",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ04",
+   "numero": 2,
+   "date": "2027-03-20",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 6,
+   "date": "2027-03-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 5,
+   "date": "2027-03-28",
+   "declenchement": "Compteur 6300 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ12"
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 6,
+   "date": "2027-03-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ02"
+  },
+  {
+   "equipement": "EQ14",
+   "numero": 4,
+   "date": "2027-03-29",
+   "declenchement": "Compteur 4800 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 6,
+   "date": "2027-03-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ07",
+   "numero": 3,
+   "date": "2027-04-14",
+   "declenchement": "Compteur 8000 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 7,
+   "date": "2027-04-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 7,
+   "date": "2027-04-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 7,
+   "date": "2027-04-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 6,
+   "date": "2027-05-06",
+   "declenchement": "Compteur 6800 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ06",
+   "numero": 3,
+   "date": "2027-05-12",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ15",
+   "numero": 2,
+   "date": "2027-05-15",
+   "declenchement": "Date (tous les 6 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ09",
+   "numero": 3,
+   "date": "2027-05-18",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ14",
+   "numero": 5,
+   "date": "2027-05-20",
+   "declenchement": "Compteur 5300 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ11",
+   "numero": 3,
+   "date": "2027-05-22",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 8,
+   "date": "2027-05-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 8,
+   "date": "2027-05-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 8,
+   "date": "2027-05-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ01",
+   "numero": 3,
+   "date": "2027-06-05",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ10"
+  },
+  {
+   "equipement": "EQ10",
+   "numero": 2,
+   "date": "2027-06-05",
+   "declenchement": "Date (tous les 6 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ01"
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 7,
+   "date": "2027-06-14",
+   "declenchement": "Compteur 7300 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ13",
+   "numero": 3,
+   "date": "2027-06-15",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ04",
+   "numero": 3,
+   "date": "2027-06-20",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 9,
+   "date": "2027-06-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ07",
+   "numero": 4,
+   "date": "2027-06-28",
+   "declenchement": "Compteur 9000 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ12"
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 9,
+   "date": "2027-06-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ07"
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 9,
+   "date": "2027-06-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ03",
+   "numero": 2,
+   "date": "2027-07-10",
+   "declenchement": "Date (tous les 6 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ14"
+  },
+  {
+   "equipement": "EQ14",
+   "numero": 6,
+   "date": "2027-07-10",
+   "declenchement": "Compteur 5800 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Même date que EQ03"
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 8,
+   "date": "2027-07-22",
+   "declenchement": "Compteur 7800 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 10,
+   "date": "2027-07-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 10,
+   "date": "2027-07-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 10,
+   "date": "2027-07-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ06",
+   "numero": 4,
+   "date": "2027-08-12",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ09",
+   "numero": 4,
+   "date": "2027-08-18",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ11",
+   "numero": 4,
+   "date": "2027-08-22",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 11,
+   "date": "2027-08-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 11,
+   "date": "2027-08-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 9,
+   "date": "2027-08-30",
+   "declenchement": "Compteur 8300 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine ; Même date que EQ14 ; Même date que EQ05"
+  },
+  {
+   "equipement": "EQ14",
+   "numero": 7,
+   "date": "2027-08-30",
+   "declenchement": "Compteur 6300 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine ; Même date que EQ02 ; Même date que EQ05"
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 11,
+   "date": "2027-08-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine ; Même date que EQ02 ; Même date que EQ14"
+  },
+  {
+   "equipement": "EQ01",
+   "numero": 4,
+   "date": "2027-09-05",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": "Conflit semaine"
+  },
+  {
+   "equipement": "EQ07",
+   "numero": 5,
+   "date": "2027-09-11",
+   "declenchement": "Compteur 10000 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ13",
+   "numero": 4,
+   "date": "2027-09-15",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ04",
+   "numero": 4,
+   "date": "2027-09-20",
+   "declenchement": "Date (tous les 3 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ08",
+   "numero": 12,
+   "date": "2027-09-25",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ12",
+   "numero": 12,
+   "date": "2027-09-28",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ05",
+   "numero": 12,
+   "date": "2027-09-30",
+   "declenchement": "Date (tous les 1 Mois)",
+   "etat": "Planifiée",
+   "alerte": ""
+  },
+  {
+   "equipement": "EQ02",
+   "numero": 10,
+   "date": "2027-10-08",
+   "declenchement": "Compteur 8800 h (date estimée)",
+   "etat": "Planifiée",
+   "alerte": ""
+  }
+ ],
+ "calcul": [
+  {
+   "id": "EQ01",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-12-05",
+   "echeances": [
+    "2026-12-05",
+    "2027-03-05",
+    "2027-06-05",
+    "2027-09-05"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ02",
+   "etat": "À surveiller",
+   "prochaineDate": "2026-10-24",
+   "echeances": [
+    "2026-10-24",
+    "2026-12-02",
+    "2027-01-10",
+    "2027-02-18"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ03",
+   "etat": "Planifiée",
+   "prochaineDate": "2027-01-10",
+   "echeances": [
+    "2027-01-10",
+    "2027-07-10",
+    "2028-01-10",
+    "2028-07-10"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ04",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-12-20",
+   "echeances": [
+    "2026-12-20",
+    "2027-03-20",
+    "2027-06-20",
+    "2027-09-20"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ05",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-10-30",
+   "echeances": [
+    "2026-10-30",
+    "2026-11-30",
+    "2026-12-30",
+    "2027-01-30"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ06",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-11-12",
+   "echeances": [
+    "2026-11-12",
+    "2027-02-12",
+    "2027-05-12",
+    "2027-08-12"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ07",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-11-15",
+   "echeances": [
+    "2026-11-15",
+    "2027-01-29",
+    "2027-04-14",
+    "2027-06-28"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ08",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-10-25",
+   "echeances": [
+    "2026-10-25",
+    "2026-11-25",
+    "2026-12-25",
+    "2027-01-25"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ09",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-11-18",
+   "echeances": [
+    "2026-11-18",
+    "2027-02-18",
+    "2027-05-18",
+    "2027-08-18"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ10",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-12-05",
+   "echeances": [
+    "2026-12-05",
+    "2027-06-05",
+    "2027-12-05",
+    "2028-06-05"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ11",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-11-22",
+   "echeances": [
+    "2026-11-22",
+    "2027-02-22",
+    "2027-05-22",
+    "2027-08-22"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ12",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-10-28",
+   "echeances": [
+    "2026-10-28",
+    "2026-11-28",
+    "2026-12-28",
+    "2027-01-28"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ13",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-12-15",
+   "echeances": [
+    "2026-12-15",
+    "2027-03-15",
+    "2027-06-15",
+    "2027-09-15"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ14",
+   "etat": "À surveiller",
+   "prochaineDate": "2026-10-27",
+   "echeances": [
+    "2026-10-27",
+    "2026-12-17",
+    "2027-02-06",
+    "2027-03-29"
+   ],
+   "retard": ""
+  },
+  {
+   "id": "EQ15",
+   "etat": "Planifiée",
+   "prochaineDate": "2026-11-15",
+   "echeances": [
+    "2026-11-15",
+    "2027-05-15",
+    "2027-11-15",
+    "2028-05-15"
+   ],
+   "retard": ""
+  }
+ ],
+ "conflits": [
+  {
+   "quand": "Compteur 4200 h",
+   "equipements": "EQ02 - Machine de pose",
+   "technicien": "Technicien 1",
+   "type": "Seuil d'usage proche",
+   "resultat": "À surveiller"
+  },
+  {
+   "quand": "Compteur 3200 h",
+   "equipements": "EQ14 - Machine de découpe PCB",
+   "technicien": "Technicien 2",
+   "type": "Seuil d'usage proche",
+   "resultat": "À surveiller"
+  },
+  {
+   "quand": "2026-S49",
+   "equipements": "EQ05, EQ02, EQ01, EQ10",
+   "technicien": "Tous",
+   "type": "Nombre d'interventions / semaine",
+   "resultat": "CONFLIT"
+  },
+  {
+   "quand": "2027-S04",
+   "equipements": "EQ08, EQ12, EQ07, EQ05",
+   "technicien": "Tous",
+   "type": "Nombre d'interventions / semaine",
+   "resultat": "CONFLIT"
+  },
+  {
+   "quand": "2027-S08",
+   "equipements": "EQ11, EQ08, EQ05, EQ12",
+   "technicien": "Tous",
+   "type": "Nombre d'interventions / semaine",
+   "resultat": "CONFLIT"
+  },
+  {
+   "quand": "2027-S35",
+   "equipements": "EQ02, EQ14, EQ05, EQ01",
+   "technicien": "Tous",
+   "type": "Nombre d'interventions / semaine",
+   "resultat": "CONFLIT"
+  },
+  {
+   "quand": "2026-11-15",
+   "equipements": "EQ07 + EQ15",
+   "technicien": "Technicien 2",
+   "type": "Même date - même technicien",
+   "resultat": "À arbitrer"
+  },
+  {
+   "quand": "2026-12-05",
+   "equipements": "EQ01 + EQ10",
+   "technicien": "Technicien 1 / Technicien 2",
+   "type": "Même date - techniciens différents",
+   "resultat": "OK"
+  },
+  {
+   "quand": "2027-01-10",
+   "equipements": "EQ02 + EQ03",
+   "technicien": "Technicien 1 / Technicien 2",
+   "type": "Même date - techniciens différents",
+   "resultat": "OK"
+  },
+  {
+   "quand": "2027-02-18",
+   "equipements": "EQ02 + EQ09",
+   "technicien": "Technicien 1 / Technicien 2",
+   "type": "Même date - techniciens différents",
+   "resultat": "OK"
+  },
+  {
+   "quand": "2027-02-28",
+   "equipements": "EQ05 + EQ12",
+   "technicien": "Technicien 1 / Technicien 2",
+   "type": "Même date - techniciens différents",
+   "resultat": "OK"
+  },
+  {
+   "quand": "2027-03-28",
+   "equipements": "EQ02 + EQ12",
+   "technicien": "Technicien 1 / Technicien 2",
+   "type": "Même date - techniciens différents",
+   "resultat": "OK"
+  },
+  {
+   "quand": "2027-06-05",
+   "equipements": "EQ01 + EQ10",
+   "technicien": "Technicien 1 / Technicien 2",
+   "type": "Même date - techniciens différents",
+   "resultat": "OK"
+  },
+  {
+   "quand": "2027-06-28",
+   "equipements": "EQ07 + EQ12",
+   "technicien": "Technicien 2",
+   "type": "Même date - même technicien",
+   "resultat": "À arbitrer"
+  },
+  {
+   "quand": "2027-07-10",
+   "equipements": "EQ03 + EQ14",
+   "technicien": "Technicien 2",
+   "type": "Même date - même technicien",
+   "resultat": "À arbitrer"
+  },
+  {
+   "quand": "2027-08-30",
+   "equipements": "EQ02 + EQ14",
+   "technicien": "Technicien 1 / Technicien 2",
+   "type": "Même date - techniciens différents",
+   "resultat": "OK"
+  },
+  {
+   "quand": "2027-08-30",
+   "equipements": "EQ02 + EQ05",
+   "technicien": "Technicien 1",
+   "type": "Même date - même technicien",
+   "resultat": "À arbitrer"
+  },
+  {
+   "quand": "2027-08-30",
+   "equipements": "EQ14 + EQ05",
+   "technicien": "Technicien 2 / Technicien 1",
+   "type": "Même date - techniciens différents",
+   "resultat": "OK"
+  }
+ ],
+ "semaines": [
+  {
+   "semaine": "2026-S42",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S43",
+   "nb": 2,
+   "t1": 5,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S44",
+   "nb": 3,
+   "t1": 1,
+   "t2": 3,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S45",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S46",
+   "nb": 3,
+   "t1": 0,
+   "t2": 6,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S47",
+   "nb": 2,
+   "t1": 1,
+   "t2": 1.5,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S48",
+   "nb": 2,
+   "t1": 2,
+   "t2": 1,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S49",
+   "nb": 4,
+   "t1": 6,
+   "t2": 3,
+   "resultat": "CONFLIT"
+  },
+  {
+   "semaine": "2026-S50",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S51",
+   "nb": 3,
+   "t1": 2,
+   "t2": 4,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S52",
+   "nb": 1,
+   "t1": 2,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2026-S53",
+   "nb": 2,
+   "t1": 1,
+   "t2": 1,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S01",
+   "nb": 2,
+   "t1": 3,
+   "t2": 3,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S02",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S03",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S04",
+   "nb": 4,
+   "t1": 3,
+   "t2": 3,
+   "resultat": "CONFLIT"
+  },
+  {
+   "semaine": "2027-S05",
+   "nb": 1,
+   "t1": 0,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S06",
+   "nb": 1,
+   "t1": 0,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S07",
+   "nb": 2,
+   "t1": 3,
+   "t2": 1.5,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S08",
+   "nb": 4,
+   "t1": 4,
+   "t2": 1,
+   "resultat": "CONFLIT"
+  },
+  {
+   "semaine": "2027-S09",
+   "nb": 1,
+   "t1": 2,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S10",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S11",
+   "nb": 2,
+   "t1": 2,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S12",
+   "nb": 3,
+   "t1": 5,
+   "t2": 1,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S13",
+   "nb": 2,
+   "t1": 1,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S14",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S15",
+   "nb": 1,
+   "t1": 0,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S16",
+   "nb": 1,
+   "t1": 2,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S17",
+   "nb": 2,
+   "t1": 1,
+   "t2": 1,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S18",
+   "nb": 1,
+   "t1": 3,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S19",
+   "nb": 2,
+   "t1": 0,
+   "t2": 4,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S20",
+   "nb": 3,
+   "t1": 1,
+   "t2": 3.5,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S21",
+   "nb": 3,
+   "t1": 3,
+   "t2": 1,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S22",
+   "nb": 2,
+   "t1": 2,
+   "t2": 3,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S23",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S24",
+   "nb": 3,
+   "t1": 5,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S25",
+   "nb": 1,
+   "t1": 2,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S26",
+   "nb": 3,
+   "t1": 1,
+   "t2": 3,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S27",
+   "nb": 2,
+   "t1": 0,
+   "t2": 5,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S28",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S29",
+   "nb": 2,
+   "t1": 5,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S30",
+   "nb": 2,
+   "t1": 1,
+   "t2": 1,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S31",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S32",
+   "nb": 1,
+   "t1": 0,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S33",
+   "nb": 2,
+   "t1": 1,
+   "t2": 1.5,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S34",
+   "nb": 2,
+   "t1": 2,
+   "t2": 1,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S35",
+   "nb": 4,
+   "t1": 6,
+   "t2": 2,
+   "resultat": "CONFLIT"
+  },
+  {
+   "semaine": "2027-S36",
+   "nb": 1,
+   "t1": 0,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S37",
+   "nb": 1,
+   "t1": 2,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S38",
+   "nb": 2,
+   "t1": 2,
+   "t2": 2,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S39",
+   "nb": 2,
+   "t1": 1,
+   "t2": 1,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S40",
+   "nb": 1,
+   "t1": 3,
+   "t2": 0,
+   "resultat": "OK"
+  },
+  {
+   "semaine": "2027-S41",
+   "nb": 0,
+   "t1": 0,
+   "t2": 0,
+   "resultat": "OK"
+  }
+ ]
+}

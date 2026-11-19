@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lancement et publication — Plan de maintenance CMS</title>
+<meta name="description" content="Guide pas à pas (français et arabe) pour lancer, publier sur GitHub et Vercel, et produire l'APK Android de Plan de maintenance CMS.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Mise en page : bandeau vert PCB, sommaire collant à côté du contenu (au-dessus sur mobile), étapes numérotées */
+:root {
+  --fond: #f2f5f3; --surface: #ffffff; --surface-2: #e9efec; --encre: #15211c; --encre-2: #45554e; --encre-3: #5a6963; --trait: #d3dcd8;
+  --pcb: #0f3d2e; --pcb-2: #17543f; --pcb-encre: #e8f1ec; --cuivre: #9a4d17; --cuivre-clair: #f6e6d8; --ok: #23744a; --ok-fond: #dcf0e4;
+  --code-fond: #10241c; --code-encre: #dbe9e2;
+  --f-titre: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --f-texte: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-arabe: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, "Noto Sans Arabic", sans-serif;
+  --f-code: "IBM Plex Mono", Consolas, "Cascadia Mono", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --fond: #0e1412; --surface: #151d1a; --surface-2: #1c2622; --encre: #e4ebe7; --encre-2: #b0bdb7; --encre-3: #93a29b; --trait: #2a3631;
+    --pcb: #0a2a20; --pcb-2: #123b2d; --cuivre: #e08a4c; --cuivre-clair: #3a2617; --ok: #4fbf85; --ok-fond: #15382a; --code-fond: #0a1712; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --fond: #0e1412; --surface: #151d1a; --surface-2: #1c2622; --encre: #e4ebe7; --encre-2: #b0bdb7; --encre-3: #93a29b; --trait: #2a3631;
+  --pcb: #0a2a20; --pcb-2: #123b2d; --cuivre: #e08a4c; --cuivre-clair: #3a2617; --ok: #4fbf85; --ok-fond: #15382a; --code-fond: #0a1712; color-scheme: dark; }
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 16px; }
+body { margin: 0; background: var(--fond); color: var(--encre); font: 16px/1.6 var(--f-texte); }
+html[lang="ar"] body { font-family: var(--f-arabe); font-size: 17px; line-height: 1.85; }
+html[lang="fr"] [data-lang="ar"], html[lang="ar"] [data-lang="fr"] { display: none !important; }
+a { color: var(--cuivre); }
+code { font-family: var(--f-code); font-size: .88em; background: var(--surface-2); padding: 1px 5px; border-radius: 4px; unicode-bidi: isolate; direction: ltr; }
+:focus-visible { outline: 2px solid var(--cuivre); outline-offset: 2px; }
+.gouttiere { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.cadre { max-width: 1180px; margin: 0 auto; }
+
+/* Bandeau */
+.bandeau { background: repeating-linear-gradient(90deg, transparent 0 47px, rgb(214 140 80 / .10) 47px 48px), var(--pcb); color: var(--pcb-encre); }
+.bandeau .cadre { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; padding-block: 22px 20px; }
+.marque { display: flex; align-items: center; gap: 14px; min-width: 0; flex: 1 1 320px; }
+.marque svg { flex: none; }
+.marque h1 { margin: 0; font: 700 2.1rem/1.05 var(--f-titre); color: #fff; letter-spacing: .01em; }
+html[lang="ar"] .marque h1 { font-family: var(--f-arabe); font-size: 1.75rem; line-height: 1.3; }
+.marque p { margin: 4px 0 0; font-size: .9rem; color: color-mix(in srgb, var(--pcb-encre) 78%, transparent); }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.langue { display: inline-flex; border: 1px solid rgb(255 255 255 / .25); border-radius: 999px; overflow: hidden; }
+.langue button, .bouton-clair { border: 0; background: transparent; color: var(--pcb-encre); padding: 8px 16px; font: 600 .95rem var(--f-texte); cursor: pointer; min-height: 40px; }
+.langue button[lang="ar"] { font-family: var(--f-arabe); }
+.langue button[aria-pressed="true"] { background: var(--cuivre); color: #fff; }
+.bouton-clair { border: 1px solid rgb(255 255 255 / .25); border-radius: 999px; }
+
+/* Grille */
+.lang-bloc { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 28px; padding-block: 28px 60px; }
+.sommaire { position: sticky; top: 16px; align-self: start; display: grid; gap: 16px; }
+.sommaire nav, .progression { background: var(--surface); border: 1px solid var(--trait); border-radius: 8px; padding: 14px 16px; }
+.sommaire .lib { margin: 0 0 6px; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--encre-2); }
+html[lang="ar"] .sommaire .lib { letter-spacing: 0; font-size: .85rem; }
+.sommaire ol { margin: 0; padding: 0; list-style: none; counter-reset: s; }
+.sommaire li { counter-increment: s; }
+.sommaire a { display: flex; gap: 10px; padding: 6px 4px; color: var(--encre); text-decoration: none; font-size: .92rem; line-height: 1.35; border-radius: 4px; }
+.sommaire a::before { content: counter(s); flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font: 600 .75rem var(--f-code); background: var(--surface-2); color: var(--encre-2); }
+.sommaire li:last-child a::before { content: "?"; }
+.sommaire a:hover { background: var(--surface-2); }
+.sommaire a.fait::before { content: "✓"; background: var(--ok); color: #fff; }
+.progression p { margin: 8px 0 0; font-size: .88rem; color: var(--encre-2); }
+.progression .nb { font-family: var(--f-code); color: var(--encre); }
+.barre { height: 8px; border-radius: 99px; background: var(--surface-2); overflow: hidden; }
+.barre i { display: block; height: 100%; width: 0; background: var(--ok); border-radius: 99px; transition: width .3s; }
+
+/* Contenu */
+.contenu { display: grid; gap: 22px; min-width: 0; }
+.ensemble, .etape { background: var(--surface); border: 1px solid var(--trait); border-radius: 10px; padding: 22px 24px; min-width: 0; }
+.ensemble h2 { margin: 0 0 6px; font: 600 1.6rem/1.2 var(--f-titre); }
+html[lang="ar"] .ensemble h2, html[lang="ar"] .etape h2 { font-family: var(--f-arabe); font-weight: 700; font-size: 1.35rem; }
+.ensemble p { margin: 0 0 12px; max-width: 70ch; }
+.cartes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 10px; margin: 14px 0; }
+.carte { border: 1px solid var(--trait); border-radius: 8px; padding: 10px 12px; display: grid; gap: 2px; background: var(--fond); }
+.carte b { font-family: var(--f-titre); font-size: 1.2rem; letter-spacing: .02em; }
+.carte span { font-size: .85rem; color: var(--encre-2); }
+.etape > header { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 8px; }
+.num { flex: none; width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; background: var(--pcb); color: #fff; font: 700 1.3rem var(--f-titre); }
+.etape h2 { margin: 2px 0 0; font: 600 1.55rem/1.15 var(--f-titre); text-wrap: balance; }
+.duree { margin: 2px 0 0; font: .82rem var(--f-code); color: var(--encre-3); }
+.badge { display: inline-block; vertical-align: middle; font: 600 .72rem var(--f-texte); letter-spacing: .04em; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: var(--cuivre-clair); color: var(--cuivre); }
+html[lang="ar"] .badge { font-family: var(--f-arabe); letter-spacing: 0; text-transform: none; font-size: .8rem; }
+.intro { margin: 6px 0 10px; color: var(--encre-2); max-width: 72ch; }
+.points { margin: 0; padding-inline-start: 22px; display: grid; gap: 8px; max-width: 78ch; }
+.points li::marker { font-weight: 700; color: var(--cuivre); }
+.points li, .note, td, .intro { overflow-wrap: anywhere; }
+.points code, .note code, td code, .intro code { overflow-wrap: anywhere; word-break: break-all; }
+.note { margin: 14px 0 0; padding: 10px 14px; border-radius: 6px; background: var(--fond); border-inline-start: 3px solid var(--cuivre); font-size: .92rem; color: var(--encre-2); max-width: 78ch; }
+.code { position: relative; margin: 14px 0 0; border-radius: 8px; background: var(--code-fond); }
+.code pre { margin: 0; padding: 14px 16px; padding-right: 92px; overflow-x: auto; color: var(--code-encre); font: .9rem/1.6 var(--f-code); text-align: left; }
+.code pre code { background: none; padding: 0; color: inherit; font-size: inherit; }
+.copier { position: absolute; top: 8px; right: 8px; border: 1px solid rgb(255 255 255 / .25); background: rgb(255 255 255 / .06); color: #fff; border-radius: 6px; padding: 5px 12px; font: 600 .82rem var(--f-texte); cursor: pointer; min-height: 32px; }
+.copier span[data-lang="ar"] { font-family: var(--f-arabe); }
+.copier.ok { background: var(--ok); border-color: var(--ok); }
+.fait { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; padding: 8px 14px; border: 1px solid var(--trait); border-radius: 99px; cursor: pointer; font-weight: 600; font-size: .92rem; user-select: none; }
+.fait input { width: 18px; height: 18px; accent-color: var(--ok); margin: 0; }
+.fait:has(input:checked) { background: var(--ok-fond); border-color: var(--ok); color: var(--ok); }
+.etape.terminee .num { background: var(--ok); }
+.tableau { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+th, td { text-align: start; padding: 9px 10px; border-bottom: 1px solid var(--trait); vertical-align: top; }
+th { background: var(--surface-2); font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--encre-2); }
+html[lang="ar"] th { text-transform: none; letter-spacing: 0; font-size: .88rem; }
+td:first-child { font-weight: 600; width: 38%; }
+.pied { color: var(--encre-3); font-size: .85rem; padding-block: 0 32px; }
+
+@media (max-width: 860px) {
+  .lang-bloc { grid-template-columns: minmax(0, 1fr); gap: 18px; padding-block: 18px 40px; }
+  .sommaire { position: static; }
+  .ensemble, .etape { padding: 18px 16px; }
+  .marque h1 { font-size: 1.7rem; }
+}
+@media (pointer: coarse) { .copier { min-height: 40px; } .sommaire a { padding: 9px 4px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .barre i { transition: none; } }
+@media print {
+  .bandeau .actions, .copier, .fait, .sommaire { display: none !important; }
+  body { background: #fff; color: #000; }
+  .lang-bloc { display: block; }
+  .ensemble, .etape { break-inside: avoid; border-color: #bbb; margin-bottom: 12px; }
+  .code { background: #f2f2f2; } .code pre { color: #000; }
+}
+</style>
+</head>
+<body>
+<header class="bandeau">
+  <div class="cadre gouttiere">
+    <div class="marque">
+      <svg width="48" height="48" viewBox="0 0 44 44" aria-hidden="true"><rect x="1" y="1" width="42" height="42" rx="7" fill="#17543f" stroke="#d68c50" stroke-opacity=".5"/><g fill="none" stroke="#d68c50" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><polyline points="10,16.3 20,16.3 25,21.3 34,21.3"/><polyline points="10,32.3 16,32.3 19,29.3 34,29.3"/><polyline points="22,16.3 22,11.3"/></g><g fill="#e8a46e"><circle cx="10" cy="16.3" r="2.7"/><circle cx="10" cy="32.3" r="2.7"/><circle cx="34" cy="21.3" r="2.7"/><circle cx="34" cy="29.3" r="2.7"/><circle cx="22" cy="11.3" r="2.2"/></g></svg>
+      <div>
+        <h1><span data-lang="fr">Lancement et publication</span><span data-lang="ar">التشغيل والنشر</span></h1>
+        <p><span data-lang="fr">Plan de maintenance CMS · version 2.0 · web, PWA et Android</span><span data-lang="ar">مخطط صيانة CMS · الإصدار 2.0 · الويب وPWA وأندرويد</span></p>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="langue" role="group" aria-label="Langue / اللغة">
+        <button type="button" lang="fr" data-choix="fr" aria-pressed="true">Français</button>
+        <button type="button" lang="ar" data-choix="ar" aria-pressed="false">العربية</button>
+      </div>
+      <button type="button" class="bouton-clair" id="imprimer"><span data-lang="fr">Imprimer / PDF</span><span data-lang="ar">طباعة / PDF</span></button>
+    </div>
+  </div>
+</header>
+<main class="cadre gouttiere">
+<div class="lang-bloc" data-lang="fr" lang="fr" dir="ltr">
+<aside class="sommaire"><nav aria-label="Étapes"><p class="lib">Étapes</p><ol><li><a href="#preparer-fr" data-lien="preparer">Préparer l’ordinateur</a></li><li><a href="#local-fr" data-lien="local">Lancer l’application sur votre ordinateur</a></li><li><a href="#github-fr" data-lien="github">Publier le code sur GitHub</a></li><li><a href="#apk-fr" data-lien="apk">Récupérer et installer l’APK Android</a></li><li><a href="#vercel-fr" data-lien="vercel">Mettre l’application en ligne avec Vercel</a></li><li><a href="#installer-fr" data-lien="installer">Installer l’application (PWA) sur PC et téléphone</a></li><li><a href="#supabase-fr" data-lien="supabase">Synchronisation entre appareils (Supabase)</a></li><li><a href="#signature-fr" data-lien="signature">Version signée et publication sur Google Play</a></li><li><a href="#maj-fr" data-lien="maj">Publier une mise à jour</a></li><li><a href="#depannage-fr">Dépannage</a></li></ol></nav><div class="progression"><div class="barre"><i></i></div><p><b class="nb">0</b> / 9 étapes terminées</p></div></aside>
+<div class="contenu">
+<section class="ensemble"><h2>Vue d’ensemble</h2><p>Ce guide vous emmène du fichier <b>plan-maintenance-cms.zip</b> jusqu’à une application <b>en ligne</b>, <b>installable</b> sur PC et Android, avec un <b>APK</b> téléchargeable. Les étapes 1 à 6 suffisent ; 7 et 8 sont facultatives.</p><div class="cartes"><div class="carte"><b>GitHub</b><span>gratuit · code, tests, APK</span></div><div class="carte"><b>Vercel</b><span>gratuit · site en ligne</span></div><div class="carte"><b>Supabase</b><span>gratuit · facultatif</span></div><div class="carte"><b>Google Play</b><span>payant · facultatif</span></div></div><p class="note">Remplacez toujours <code>VOTRE_DEPOT</code> par l’adresse de <b>votre</b> dépôt GitHub. Aucune action n’a été faite sur vos comptes : vous gardez la main sur chaque étape.</p></section>
+<section class="etape" id="preparer-fr" data-etape="preparer">
+  <header><span class="num">1</span><div><h2>Préparer l’ordinateur </h2><p class="duree">≈ 10 min</p></div></header>
+  <p class="intro">Deux logiciels gratuits suffisent : <b>Node.js</b> (pour construire et lancer l’application) et <b>Git</b> (pour envoyer le code sur GitHub).</p>
+  <ol class="points"><li>Installez <b>Node.js 22 LTS</b> depuis <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a> (bouton « LTS »), avec les options par défaut.</li><li>Installez <b>Git</b> depuis <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com</a>, avec les options par défaut.</li><li>Ouvrez un <b>terminal</b> : sous Windows, « Invite de commandes » ou « PowerShell » ; sous macOS, « Terminal ».</li><li>Vérifiez l’installation avec les deux commandes ci-dessous : chacune doit afficher un numéro de version (Node.js : v22 ou plus).</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="1" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c1">node -v
+git --version</code></pre></div>
+  <label class="fait"><input type="checkbox" data-fait="preparer"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="local-fr" data-etape="local">
+  <header><span class="num">2</span><div><h2>Lancer l’application sur votre ordinateur </h2><p class="duree">≈ 5 min</p></div></header>
+  <p class="intro">Avant de publier, vérifiez que tout fonctionne en local.</p>
+  <ol class="points"><li>Décompressez <b>plan-maintenance-cms.zip</b> (clic droit → Extraire tout).</li><li>Dans le terminal, placez-vous dans le dossier décompressé avec <code>cd</code>. Astuce Windows : dans l’Explorateur, tapez <code>cmd</code> dans la barre d’adresse du dossier puis Entrée.</li><li>Installez les dépendances puis lancez l’application (commandes ci-dessous). La première installation prend environ une minute.</li><li>Ouvrez <b>http://localhost:4173</b> dans votre navigateur. Allez dans l’onglet <b>Tests</b> : il doit afficher <b>19 / 19</b>.</li><li>Pour arrêter le serveur : <b>Ctrl + C</b> dans le terminal.</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="2" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c2">cd plan-maintenance-cms
+npm install
+npm start</code></pre></div><p class="note">Facultatif — lancer tous les tests automatiques : <code>npx playwright install chromium</code> puis <code>npm test</code>.</p>
+  <label class="fait"><input type="checkbox" data-fait="local"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="github-fr" data-etape="github">
+  <header><span class="num">3</span><div><h2>Publier le code sur GitHub </h2><p class="duree">≈ 10 min</p></div></header>
+  <p class="intro">GitHub héberge le code, lance les tests et <b>fabrique l’APK Android</b> automatiquement.</p>
+  <ol class="points"><li>Créez un compte gratuit sur <a href="https://github.com/signup" target="_blank" rel="noopener">github.com</a>.</li><li>Cliquez sur <b>+</b> → <b>New repository</b>. Nom : <code>plan-maintenance-cms</code>. Public ou Private. <b>Ne cochez rien</b> (ni README, ni .gitignore, ni licence : le projet les contient déjà) → <b>Create repository</b>.</li><li>Copiez l’adresse affichée par GitHub (elle finit par <code>.git</code>).</li><li>Dans le terminal, dans le dossier du projet, lancez les commandes ci-dessous en remplaçant <code>VOTRE_DEPOT</code> par cette adresse.</li><li>Au premier <code>git push</code>, une fenêtre de connexion GitHub s’ouvre : connectez-vous. (Si Git demande votre nom : <code>git config --global user.name "Votre Nom"</code> et <code>git config --global user.email "vous@exemple.com"</code>.)</li><li>Sur GitHub, ouvrez l’onglet <b>Actions</b> : deux traitements démarrent, <b>CI</b> (tests) et <b>Android (APK)</b>. Ils doivent finir en vert ✓ (5 à 10 minutes).</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="3" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c3">git init
+git add .
+git commit -m &quot;Initial production release&quot;
+git branch -M main
+git remote add origin VOTRE_DEPOT
+git push -u origin main</code></pre></div><p class="note">Sans terminal ? L’application <b>GitHub Desktop</b> (desktop.github.com) permet de faire la même chose avec des boutons : File → Add local repository → Publish repository.</p>
+  <label class="fait"><input type="checkbox" data-fait="github"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="apk-fr" data-etape="apk">
+  <header><span class="num">4</span><div><h2>Récupérer et installer l’APK Android </h2><p class="duree">≈ 5 min</p></div></header>
+  <p class="intro">L’APK est fabriqué par GitHub à chaque envoi de code sur la branche <code>main</code>.</p>
+  <ol class="points"><li>GitHub → onglet <b>Actions</b> → <b>Android (APK)</b> → cliquez sur la dernière exécution (✓ verte).</li><li>En bas de la page, section <b>Artifacts</b> : téléchargez <b>plan-maintenance-cms-android</b> (un fichier .zip).</li><li>Décompressez-le : il contient <code>plan-maintenance-cms-N-debug.apk</code>.</li><li>Copiez l’APK sur le téléphone (câble USB, Drive, e-mail…) et ouvrez-le.</li><li>Android demande d’<b>autoriser l’installation d’applications inconnues</b> pour l’application utilisée (Fichiers, Chrome) : autorisez → <b>Installer</b> → <b>Ouvrir</b>.</li></ol>
+  <p class="note">L’APK « debug » sert aux tests et aux démonstrations. Pour Google Play, voir l’étape « Version signée ».</p>
+  <label class="fait"><input type="checkbox" data-fait="apk"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="vercel-fr" data-etape="vercel">
+  <header><span class="num">5</span><div><h2>Mettre l’application en ligne avec Vercel </h2><p class="duree">≈ 5 min</p></div></header>
+  <p class="intro">Vercel donne une adresse web publique (https) et redéploie automatiquement à chaque mise à jour.</p>
+  <ol class="points"><li>Allez sur <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com</a> → <b>Continue with GitHub</b>.</li><li><b>Add New…</b> → <b>Project</b> → à côté de <code>plan-maintenance-cms</code>, cliquez sur <b>Import</b>.</li><li>Ne changez aucun réglage : le fichier <code>vercel.json</code> indique déjà la commande de build (<code>npm run build</code>) et le dossier (<code>dist</code>).</li><li>Cliquez sur <b>Deploy</b>. Après environ une minute, Vercel affiche l’adresse publique, par exemple <code>https://plan-maintenance-cms.vercel.app</code>.</li><li>Vérifiez : le tableau de bord s’affiche, l’onglet <b>Tests</b> indique 19 / 19, et une adresse inventée (<code>/abc</code>) affiche la page 404.</li><li>Désormais, chaque <code>git push</code> sur <code>main</code> met le site à jour automatiquement.</li></ol>
+  <p class="note">Domaine personnalisé : Vercel → votre projet → <b>Settings → Domains</b>, puis suivez les instructions DNS. Le HTTPS est automatique.</p>
+  <label class="fait"><input type="checkbox" data-fait="vercel"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="installer-fr" data-etape="installer">
+  <header><span class="num">6</span><div><h2>Installer l’application (PWA) sur PC et téléphone </h2><p class="duree">≈ 2 min</p></div></header>
+  <p class="intro">Avec l’adresse Vercel, l’application s’installe comme une vraie application et fonctionne hors ligne.</p>
+  <ol class="points"><li><b>PC (Windows, macOS, Linux)</b> : ouvrez l’adresse dans Chrome ou Edge → bouton <b>Installer l’application</b> dans l’en-tête vert (ou icône ⊕ de la barre d’adresse).</li><li><b>Android</b> : ouvrez l’adresse dans Chrome → menu <b>⋮</b> → <b>Installer l’application</b>. L’icône « Maintenance CMS » apparaît sur l’écran d’accueil.</li><li><b>iPhone / iPad</b> (sans App Store) : Safari → <b>Partager</b> → <b>Sur l’écran d’accueil</b>.</li><li>Quand une nouvelle version est publiée, l’application affiche <b>« Nouvelle version disponible »</b> → <b>Mettre à jour</b>. Les données sont conservées.</li></ol>
+  
+  <label class="fait"><input type="checkbox" data-fait="installer"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="supabase-fr" data-etape="supabase">
+  <header><span class="num">7</span><div><h2>Synchronisation entre appareils (Supabase) <span class="badge">Facultatif</span></h2><p class="duree">≈ 15 min</p></div></header>
+  <p class="intro"><b>Facultatif.</b> Sans cette étape, l’application fonctionne sans compte et les données restent sur chaque appareil. Avec elle : un compte e-mail et le même plan sur le PC et le téléphone.</p>
+  <ol class="points"><li>Créez un projet gratuit sur <a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a> (New project, choisissez une région proche, ex. Europe).</li><li><b>SQL Editor</b> → <b>New query</b> → collez tout le contenu du fichier <code>supabase/migrations/20261110000000_plans.sql</code> → <b>Run</b>.</li><li><b>Project Settings → API</b> : copiez <b>Project URL</b> et la clé publique <b>anon / publishable</b>. <b>Jamais</b> la clé <code>service_role</code> ni une clé <code>sb_secret_…</code> (le build les refuse).</li><li><b>Authentication → URL Configuration</b> : mettez votre adresse Vercel dans <b>Site URL</b>.</li><li>Dans <b>Vercel</b> → projet → <b>Settings → Environment Variables</b> : ajoutez <code>SUPABASE_URL</code> et <code>SUPABASE_ANON_KEY</code>, puis <b>Deployments → ⋯ → Redeploy</b>.</li><li>Dans <b>GitHub</b> → dépôt → <b>Settings → Secrets and variables → Actions → onglet Variables</b> : ajoutez les deux mêmes variables (pour que l’APK ait aussi la synchronisation).</li><li>Vérifiez : application → <b>Paramètres</b> → section « Synchronisation » → <b>Créer un compte</b>.</li></ol>
+  
+  <label class="fait"><input type="checkbox" data-fait="supabase"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="signature-fr" data-etape="signature">
+  <header><span class="num">8</span><div><h2>Version signée et publication sur Google Play <span class="badge">Facultatif</span></h2><p class="duree">≈ 20 min</p></div></header>
+  <p class="intro"><b>Facultatif.</b> Nécessaire pour Google Play et pour des mises à jour d’APK sans désinstallation. Un compte développeur Google Play est payant (frais d’inscription unique).</p>
+  <ol class="points"><li>Créez une fois pour toutes une <b>clé de signature</b> avec la commande ci-dessous (<code>keytool</code> est fourni avec Android Studio ou tout JDK). <b>Gardez le fichier et les mots de passe en lieu sûr</b> : sans eux, plus aucune mise à jour possible sur Google Play.</li><li>Convertissez la clé en texte : Linux / macOS <code>base64 -w0 publication.jks</code> (macOS : <code>base64 -i publication.jks</code>) ; Windows PowerShell : <code>[Convert]::ToBase64String([IO.File]::ReadAllBytes("publication.jks"))</code>.</li><li>GitHub → <b>Settings → Secrets and variables → Actions → New repository secret</b> : <code>ANDROID_KEYSTORE_BASE64</code> (le texte), <code>ANDROID_KEYSTORE_PASSWORD</code>, <code>ANDROID_KEY_ALIAS</code> (<code>planmaintenance</code>), <code>ANDROID_KEY_PASSWORD</code>.</li><li>Créez une version avec un <b>tag</b> (commandes ci-dessous) : GitHub crée une <b>Release</b> avec l’APK signé et le fichier <b>.aab</b>.</li><li>Sur la <a href="https://play.google.com/console" target="_blank" rel="noopener">Google Play Console</a> : créez l’application, déposez le fichier <b>.aab</b>, complétez la fiche (captures dans <code>docs/images/</code>), la politique de confidentialité et le questionnaire, puis envoyez en test interne avant la production.</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="4" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c4">keytool -genkey -v -keystore publication.jks -keyalg RSA -keysize 2048 -validity 10000 -alias planmaintenance</code></pre></div><div class="code"><button class="copier" type="button" data-copie="5" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c5">git tag v2.0.0
+git push origin v2.0.0</code></pre></div>
+  <label class="fait"><input type="checkbox" data-fait="signature"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="maj-fr" data-etape="maj">
+  <header><span class="num">9</span><div><h2>Publier une mise à jour </h2><p class="duree">≈ 5 min</p></div></header>
+  <p class="intro">Le même geste met à jour le site, la PWA et l’APK.</p>
+  <ol class="points"><li>Modifiez le projet, puis vérifiez en local : <code>npm start</code> (et <code>npm test</code> si possible).</li><li>Changez le numéro de version dans <code>package.json</code> et dans <code>android/app/build.gradle</code> (<code>versionName</code>), notez les changements dans <code>CHANGELOG.md</code>.</li><li>Envoyez le code (commandes ci-dessous) : Vercel redéploie le site, les utilisateurs voient « Nouvelle version disponible », GitHub refabrique l’APK.</li><li>Version Android officielle : créez un tag <code>vX.Y.Z</code> (voir l’étape précédente).</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="6" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c6">git add .
+git commit -m &quot;Version 2.1.0 : description des changements&quot;
+git push</code></pre></div>
+  <label class="fait"><input type="checkbox" data-fait="maj"> <span>Étape terminée</span></label>
+</section>
+<section class="etape" id="depannage-fr"><header><span class="num">?</span><div><h2>Dépannage</h2></div></header><div class="tableau"><table><thead><tr><th>Problème</th><th>Solution</th></tr></thead><tbody><tr><td>« node » ou « git » n’est pas reconnu</td><td>Fermez et rouvrez le terminal après l’installation ; sinon réinstallez en gardant l’option « Add to PATH ».</td></tr><tr><td><code>git push</code> refusé (authentication failed)</td><td>Connectez-vous dans la fenêtre GitHub qui s’ouvre, ou utilisez GitHub Desktop. Les mots de passe GitHub ne sont plus acceptés dans le terminal.</td></tr><tr><td>Le traitement GitHub « Android (APK) » est rouge ✗</td><td>Cliquez dessus pour lire l’étape en échec. Relancez avec <b>Re-run jobs</b> : un téléchargement réseau peut échouer ponctuellement.</td></tr><tr><td>Vercel : « Build refusé : … clé SECRÈTE »</td><td>Vous avez collé la clé <code>service_role</code>. Remplacez-la par la clé <b>anon / publishable</b>.</td></tr><tr><td>« Application non installée » (APK)</td><td>Le nouvel APK n’a pas la même signature que l’ancien. Exportez vos données (Paramètres → Exporter), désinstallez l’ancienne version, puis installez la nouvelle.</td></tr><tr><td>Le site affiche encore l’ancienne version</td><td>Touchez « Mettre à jour » quand le message apparaît, ou rechargez la page deux fois.</td></tr></tbody></table></div><p class="note">Guides complets dans le dossier <code>docs/</code> du projet : <code>DEPLOYMENT_GUIDE.md</code>, <code>INSTALLATION.md</code>, <code>TROUBLESHOOTING.md</code>.</p></section>
+</div></div>
+<div class="lang-bloc" data-lang="ar" lang="ar" dir="rtl">
+<aside class="sommaire"><nav aria-label="الخطوات"><p class="lib">الخطوات</p><ol><li><a href="#preparer-ar" data-lien="preparer">تحضير الحاسوب</a></li><li><a href="#local-ar" data-lien="local">تشغيل التطبيق على حاسوبك</a></li><li><a href="#github-ar" data-lien="github">نشر الكود على GitHub</a></li><li><a href="#apk-ar" data-lien="apk">تحميل ملف APK وتثبيته على أندرويد</a></li><li><a href="#vercel-ar" data-lien="vercel">نشر التطبيق على الإنترنت مع Vercel</a></li><li><a href="#installer-ar" data-lien="installer">تثبيت التطبيق (PWA) على الحاسوب والهاتف</a></li><li><a href="#supabase-ar" data-lien="supabase">المزامنة بين الأجهزة (Supabase)</a></li><li><a href="#signature-ar" data-lien="signature">النسخة الموقّعة والنشر على Google Play</a></li><li><a href="#maj-ar" data-lien="maj">نشر تحديث</a></li><li><a href="#depannage-ar">حلّ المشاكل</a></li></ol></nav><div class="progression"><div class="barre"><i></i></div><p><b class="nb">0</b> / 9 خطوات منجزة</p></div></aside>
+<div class="contenu">
+<section class="ensemble"><h2>نظرة عامة</h2><p>يرافقك هذا الدليل من الملف <b>plan-maintenance-cms.zip</b> إلى تطبيق <b>منشور على الإنترنت</b>، <b>قابل للتثبيت</b> على الحاسوب وأندرويد، مع ملف <b>APK</b> قابل للتحميل. الخطوات من 1 إلى 6 كافية؛ الخطوتان 7 و8 اختياريتان.</p><div class="cartes"><div class="carte"><b>GitHub</b><span>مجاني · الكود، الاختبارات، APK</span></div><div class="carte"><b>Vercel</b><span>مجاني · الموقع على الإنترنت</span></div><div class="carte"><b>Supabase</b><span>مجاني · اختياري</span></div><div class="carte"><b>Google Play</b><span>مدفوع · اختياري</span></div></div><p class="note">عوّض دائماً <code>VOTRE_DEPOT</code> بعنوان مستودع GitHub <b>الخاص بك</b>. لم يُنفَّذ أي إجراء على حساباتك: أنت المتحكّم في كل خطوة.</p></section>
+<section class="etape" id="preparer-ar" data-etape="preparer">
+  <header><span class="num">1</span><div><h2>تحضير الحاسوب </h2><p class="duree">≈ 10 min</p></div></header>
+  <p class="intro">يكفي برنامجان مجانيان: <b>Node.js</b> (لبناء التطبيق وتشغيله) و<b>Git</b> (لإرسال الكود إلى GitHub).</p>
+  <ol class="points"><li>ثبّت <b>Node.js 22 LTS</b> من الموقع <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a> (زرّ « LTS ») مع الخيارات الافتراضية.</li><li>ثبّت <b>Git</b> من الموقع <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com</a> مع الخيارات الافتراضية.</li><li>افتح <b>الطرفية (Terminal)</b>: في Windows « Invite de commandes » أو « PowerShell »، وفي macOS « Terminal ».</li><li>تحقّق من التثبيت بالأمرين أسفله: يجب أن يُظهر كلّ منهما رقم إصدار (Node.js: الإصدار 22 أو أحدث).</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="7" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c7">node -v
+git --version</code></pre></div>
+  <label class="fait"><input type="checkbox" data-fait="preparer"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="local-ar" data-etape="local">
+  <header><span class="num">2</span><div><h2>تشغيل التطبيق على حاسوبك </h2><p class="duree">≈ 5 min</p></div></header>
+  <p class="intro">قبل النشر، تأكّد من أن كل شيء يعمل محلياً.</p>
+  <ol class="points"><li>فكّ ضغط الملف <b>plan-maintenance-cms.zip</b> (زرّ أيمن ← Extraire tout).</li><li>في الطرفية، ادخل إلى المجلّد بالأمر <code>cd</code>. نصيحة لـ Windows: في مستكشف الملفات اكتب <code>cmd</code> في شريط عنوان المجلّد ثم Entrée.</li><li>ثبّت المكتبات ثم شغّل التطبيق (الأوامر أسفله). التثبيت الأول يستغرق حوالي دقيقة.</li><li>افتح <b>http://localhost:4173</b> في المتصفّح. اذهب إلى تبويب <b>Tests</b>: يجب أن يُظهر <b>19 / 19</b>.</li><li>لإيقاف الخادم: <b>Ctrl + C</b> في الطرفية.</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="8" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c8">cd plan-maintenance-cms
+npm install
+npm start</code></pre></div><p class="note">اختياري — لتشغيل كل الاختبارات الآلية: <code>npx playwright install chromium</code> ثم <code>npm test</code>.</p>
+  <label class="fait"><input type="checkbox" data-fait="local"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="github-ar" data-etape="github">
+  <header><span class="num">3</span><div><h2>نشر الكود على GitHub </h2><p class="duree">≈ 10 min</p></div></header>
+  <p class="intro">GitHub يحفظ الكود، ويشغّل الاختبارات، و<b>يصنع ملف APK لأندرويد</b> آلياً.</p>
+  <ol class="points"><li>أنشئ حساباً مجانياً على <a href="https://github.com/signup" target="_blank" rel="noopener">github.com</a>.</li><li>اضغط على <b>+</b> ← <b>New repository</b>. الاسم: <code>plan-maintenance-cms</code>. عام (Public) أو خاص (Private). <b>لا تضع أي علامة</b> (لا README ولا ‎.gitignore ولا ترخيص: المشروع يحتويها) ← <b>Create repository</b>.</li><li>انسخ العنوان الذي يظهره GitHub (ينتهي بـ <code>.git</code>).</li><li>في الطرفية، داخل مجلّد المشروع، نفّذ الأوامر أسفله مع تعويض <code>VOTRE_DEPOT</code> بذلك العنوان.</li><li>عند أول <code>git push</code> تُفتح نافذة تسجيل دخول GitHub: سجّل دخولك. (إذا طلب Git اسمك: <code>git config --global user.name "اسمك"</code> و<code>git config --global user.email "vous@exemple.com"</code>.)</li><li>على GitHub افتح تبويب <b>Actions</b>: تبدأ عمليتان، <b>CI</b> (الاختبارات) و<b>Android (APK)</b>. يجب أن تنتهيا بالأخضر ✓ (من 5 إلى 10 دقائق).</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="9" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c9">git init
+git add .
+git commit -m &quot;Initial production release&quot;
+git branch -M main
+git remote add origin VOTRE_DEPOT
+git push -u origin main</code></pre></div><p class="note">بدون طرفية؟ تطبيق <b>GitHub Desktop</b> (desktop.github.com) يقوم بنفس العمل بالأزرار: File ← Add local repository ← Publish repository.</p>
+  <label class="fait"><input type="checkbox" data-fait="github"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="apk-ar" data-etape="apk">
+  <header><span class="num">4</span><div><h2>تحميل ملف APK وتثبيته على أندرويد </h2><p class="duree">≈ 5 min</p></div></header>
+  <p class="intro">يصنع GitHub ملف APK عند كل إرسال للكود إلى الفرع <code>main</code>.</p>
+  <ol class="points"><li>GitHub ← تبويب <b>Actions</b> ← <b>Android (APK)</b> ← اضغط على آخر تنفيذ (علامة ✓ خضراء).</li><li>في أسفل الصفحة، قسم <b>Artifacts</b>: حمّل <b>plan-maintenance-cms-android</b> (ملف ‎.zip).</li><li>فكّ ضغطه: يحتوي على <code>plan-maintenance-cms-N-debug.apk</code>.</li><li>انقل الملف إلى الهاتف (كابل USB، Drive، بريد إلكتروني…) وافتحه.</li><li>يطلب أندرويد <b>السماح بتثبيت تطبيقات من مصادر غير معروفة</b> للتطبيق المستعمل (Fichiers أو Chrome): اسمح ← <b>Installer</b> ← <b>Ouvrir</b>.</li></ol>
+  <p class="note">ملف APK من نوع « debug » مخصّص للتجربة والعرض. للنشر على Google Play، انظر خطوة « النسخة الموقّعة ».</p>
+  <label class="fait"><input type="checkbox" data-fait="apk"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="vercel-ar" data-etape="vercel">
+  <header><span class="num">5</span><div><h2>نشر التطبيق على الإنترنت مع Vercel </h2><p class="duree">≈ 5 min</p></div></header>
+  <p class="intro">يعطيك Vercel عنواناً عاماً على الإنترنت (https) ويعيد النشر آلياً عند كل تحديث.</p>
+  <ol class="points"><li>اذهب إلى <a href="https://vercel.com/signup" target="_blank" rel="noopener">vercel.com</a> ← <b>Continue with GitHub</b>.</li><li><b>Add New…</b> ← <b>Project</b> ← بجانب <code>plan-maintenance-cms</code> اضغط <b>Import</b>.</li><li>لا تغيّر أي إعداد: الملف <code>vercel.json</code> يحدّد مسبقاً أمر البناء (<code>npm run build</code>) والمجلّد (<code>dist</code>).</li><li>اضغط <b>Deploy</b>. بعد حوالي دقيقة يظهر العنوان العام، مثلاً <code>https://plan-maintenance-cms.vercel.app</code>.</li><li>تحقّق: يظهر لوح القيادة، وتبويب <b>Tests</b> يُظهر 19 / 19، وعنوان غير موجود (<code>/abc</code>) يُظهر صفحة 404.</li><li>من الآن، كل <code>git push</code> إلى <code>main</code> يحدّث الموقع آلياً.</li></ol>
+  <p class="note">نطاق خاص (Domaine): في Vercel ← مشروعك ← <b>Settings ← Domains</b> ثم اتّبع تعليمات DNS. شهادة HTTPS آلية.</p>
+  <label class="fait"><input type="checkbox" data-fait="vercel"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="installer-ar" data-etape="installer">
+  <header><span class="num">6</span><div><h2>تثبيت التطبيق (PWA) على الحاسوب والهاتف </h2><p class="duree">≈ 2 min</p></div></header>
+  <p class="intro">بواسطة عنوان Vercel، يُثبَّت التطبيق كتطبيق حقيقي ويعمل دون إنترنت.</p>
+  <ol class="points"><li><b>الحاسوب (Windows، macOS، Linux)</b>: افتح العنوان في Chrome أو Edge ← زرّ <b>Installer l’application</b> في الشريط الأخضر (أو أيقونة ⊕ في شريط العنوان).</li><li><b>أندرويد</b>: افتح العنوان في Chrome ← القائمة <b>⋮</b> ← <b>Installer l’application</b>. تظهر أيقونة « Maintenance CMS » في الشاشة الرئيسية.</li><li><b>آيفون / آيباد</b> (بدون App Store): Safari ← <b>مشاركة</b> ← <b>إضافة إلى الشاشة الرئيسية</b>.</li><li>عند نشر نسخة جديدة، يُظهر التطبيق <b>« Nouvelle version disponible »</b> ← <b>Mettre à jour</b>. البيانات محفوظة.</li></ol>
+  
+  <label class="fait"><input type="checkbox" data-fait="installer"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="supabase-ar" data-etape="supabase">
+  <header><span class="num">7</span><div><h2>المزامنة بين الأجهزة (Supabase) <span class="badge">اختياري</span></h2><p class="duree">≈ 15 min</p></div></header>
+  <p class="intro"><b>اختياري.</b> بدون هذه الخطوة يعمل التطبيق دون حساب وتبقى البيانات على كل جهاز. معها: حساب بالبريد الإلكتروني ونفس المخطط على الحاسوب والهاتف.</p>
+  <ol class="points"><li>أنشئ مشروعاً مجانياً على <a href="https://supabase.com" target="_blank" rel="noopener">supabase.com</a> (New project، واختر منطقة قريبة مثل أوروبا).</li><li><b>SQL Editor</b> ← <b>New query</b> ← الصق كامل محتوى الملف <code>supabase/migrations/20261110000000_plans.sql</code> ← <b>Run</b>.</li><li><b>Project Settings ← API</b>: انسخ <b>Project URL</b> والمفتاح العام <b>anon / publishable</b>. <b>أبداً</b> المفتاح <code>service_role</code> أو مفتاح <code>sb_secret_…</code> (عملية البناء ترفضهما).</li><li><b>Authentication ← URL Configuration</b>: ضع عنوان Vercel في <b>Site URL</b>.</li><li>في <b>Vercel</b> ← المشروع ← <b>Settings ← Environment Variables</b>: أضف <code>SUPABASE_URL</code> و<code>SUPABASE_ANON_KEY</code> ثم <b>Deployments ← ⋯ ← Redeploy</b>.</li><li>في <b>GitHub</b> ← المستودع ← <b>Settings ← Secrets and variables ← Actions ← تبويب Variables</b>: أضف نفس المتغيّرين (لكي يحصل ملف APK أيضاً على المزامنة).</li><li>تحقّق: التطبيق ← <b>Paramètres</b> ← قسم « Synchronisation » ← <b>Créer un compte</b>.</li></ol>
+  
+  <label class="fait"><input type="checkbox" data-fait="supabase"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="signature-ar" data-etape="signature">
+  <header><span class="num">8</span><div><h2>النسخة الموقّعة والنشر على Google Play <span class="badge">اختياري</span></h2><p class="duree">≈ 20 min</p></div></header>
+  <p class="intro"><b>اختياري.</b> ضروري للنشر على Google Play ولتحديث ملف APK دون حذف التطبيق. حساب مطوّر Google Play مدفوع (رسوم تسجيل مرة واحدة).</p>
+  <ol class="points"><li>أنشئ مرة واحدة <b>مفتاح توقيع</b> بالأمر أسفله (الأداة <code>keytool</code> موجودة مع Android Studio أو أي JDK). <b>احفظ الملف وكلمات المرور في مكان آمن</b>: بدونها لا يمكن أي تحديث على Google Play.</li><li>حوّل المفتاح إلى نص: Linux / macOS <code>base64 -w0 publication.jks</code> (macOS: <code>base64 -i publication.jks</code>)؛ Windows PowerShell: <code>[Convert]::ToBase64String([IO.File]::ReadAllBytes("publication.jks"))</code>.</li><li>GitHub ← <b>Settings ← Secrets and variables ← Actions ← New repository secret</b>: <code>ANDROID_KEYSTORE_BASE64</code> (النص)، <code>ANDROID_KEYSTORE_PASSWORD</code>، <code>ANDROID_KEY_ALIAS</code> (<code>planmaintenance</code>)، <code>ANDROID_KEY_PASSWORD</code>.</li><li>أنشئ إصداراً بواسطة <b>tag</b> (الأوامر أسفله): يُنشئ GitHub صفحة <b>Release</b> فيها ملف APK الموقّع وملف <b>‎.aab</b>.</li><li>في <a href="https://play.google.com/console" target="_blank" rel="noopener">Google Play Console</a>: أنشئ التطبيق، ارفع ملف <b>‎.aab</b>، أكمل بطاقة التطبيق (الصور في <code>docs/images/</code>) وسياسة الخصوصية والاستبيان، ثم أرسله للاختبار الداخلي قبل الإنتاج.</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="10" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c10">keytool -genkey -v -keystore publication.jks -keyalg RSA -keysize 2048 -validity 10000 -alias planmaintenance</code></pre></div><div class="code"><button class="copier" type="button" data-copie="11" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c11">git tag v2.0.0
+git push origin v2.0.0</code></pre></div>
+  <label class="fait"><input type="checkbox" data-fait="signature"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="maj-ar" data-etape="maj">
+  <header><span class="num">9</span><div><h2>نشر تحديث </h2><p class="duree">≈ 5 min</p></div></header>
+  <p class="intro">نفس الخطوة تحدّث الموقع وتطبيق PWA وملف APK.</p>
+  <ol class="points"><li>عدّل المشروع ثم تحقّق محلياً: <code>npm start</code> (و<code>npm test</code> إن أمكن).</li><li>غيّر رقم الإصدار في <code>package.json</code> وفي <code>android/app/build.gradle</code> (<code>versionName</code>)، وسجّل التغييرات في <code>CHANGELOG.md</code>.</li><li>أرسل الكود (الأوامر أسفله): يعيد Vercel نشر الموقع، ويرى المستعملون « Nouvelle version disponible »، ويعيد GitHub صنع ملف APK.</li><li>نسخة أندرويد رسمية: أنشئ tag بالشكل <code>vX.Y.Z</code> (انظر الخطوة السابقة).</li></ol>
+  <div class="code"><button class="copier" type="button" data-copie="12" aria-label="Copier"><span data-lang="fr">Copier</span><span data-lang="ar">نسخ</span></button><pre dir="ltr"><code id="c12">git add .
+git commit -m &quot;Version 2.1.0 : description des changements&quot;
+git push</code></pre></div>
+  <label class="fait"><input type="checkbox" data-fait="maj"> <span>تمّت الخطوة</span></label>
+</section>
+<section class="etape" id="depannage-ar"><header><span class="num">?</span><div><h2>حلّ المشاكل</h2></div></header><div class="tableau"><table><thead><tr><th>المشكلة</th><th>الحل</th></tr></thead><tbody><tr><td>« node » أو « git » غير معروف</td><td>أغلق الطرفية وأعد فتحها بعد التثبيت؛ وإلا أعد التثبيت مع إبقاء خيار « Add to PATH ».</td></tr><tr><td>رفض <code>git push</code> (authentication failed)</td><td>سجّل الدخول في نافذة GitHub التي تُفتح، أو استعمل GitHub Desktop. كلمات مرور GitHub لم تعد مقبولة في الطرفية.</td></tr><tr><td>عملية GitHub « Android (APK) » حمراء ✗</td><td>اضغط عليها لقراءة الخطوة الفاشلة. أعد التشغيل بـ <b>Re-run jobs</b>: قد يفشل تحميل من الشبكة مؤقتاً.</td></tr><tr><td>Vercel: « Build refusé : … clé SECRÈTE »</td><td>لقد ألصقت المفتاح <code>service_role</code>. عوّضه بالمفتاح <b>anon / publishable</b>.</td></tr><tr><td>« Application non installée » (APK)</td><td>ملف APK الجديد لا يحمل نفس توقيع القديم. صدّر بياناتك (Paramètres ← Exporter)، احذف النسخة القديمة، ثم ثبّت الجديدة.</td></tr><tr><td>الموقع ما زال يُظهر النسخة القديمة</td><td>اضغط « Mettre à jour » عند ظهور الرسالة، أو أعد تحميل الصفحة مرتين.</td></tr></tbody></table></div><p class="note">الأدلّة الكاملة في مجلّد <code>docs/</code> من المشروع: <code>DEPLOYMENT_GUIDE.md</code> و<code>INSTALLATION.md</code> و<code>TROUBLESHOOTING.md</code>.</p></section>
+</div></div>
+</main>
+<footer class="cadre gouttiere pied"><span data-lang="fr">Les cases « Étape terminée » sont mémorisées dans ce navigateur uniquement.</span><span data-lang="ar" dir="rtl">علامات « تمّت الخطوة » محفوظة في هذا المتصفّح فقط.</span></footer>
+<script>
+(function () {
+  'use strict';
+  var CLE = 'guide-pmcms:';
+  function lire(k) { try { return localStorage.getItem(CLE + k); } catch (e) { return null; } }
+  function ecrire(k, v) { try { localStorage.setItem(CLE + k, v); } catch (e) { /* stockage indisponible */ } }
+
+  /* Langue : choix mémorisé, ou #ar / #fr dans l'adresse, ou langue du navigateur */
+  function choisir(l) {
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-choix]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.choix === l)); });
+    document.title = l === 'ar' ? 'التشغيل والنشر — مخطط صيانة CMS' : 'Lancement et publication — Plan de maintenance CMS';
+    ecrire('langue', l);
+  }
+  var h = location.hash.replace('#', '');
+  choisir(h === 'ar' || h === 'fr' ? h : (lire('langue') || ((navigator.language || '').indexOf('ar') === 0 ? 'ar' : 'fr')));
+  document.querySelectorAll('[data-choix]').forEach(function (b) { b.addEventListener('click', function () { choisir(b.dataset.choix); }); });
+
+  /* Copier une commande */
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest('.copier'); if (!b) return;
+    var code = document.getElementById('c' + b.dataset.copie), texte = code.textContent;
+    function signaler() { b.classList.add('ok'); setTimeout(function () { b.classList.remove('ok'); }, 1500); }
+    function selectionner() { var r = document.createRange(); r.selectNodeContents(code); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(signaler, selectionner); else selectionner();
+  });
+
+  /* Étapes terminées : mêmes cases en français et en arabe */
+  var total = 9;
+  var faits = {}; try { faits = JSON.parse(lire('faits') || '{}') || {}; } catch (e) { faits = {}; }
+  function rafraichir() {
+    var n = 0;
+    document.querySelectorAll('[data-fait]').forEach(function (c) { c.checked = !!faits[c.dataset.fait]; });
+    document.querySelectorAll('.etape[data-etape]').forEach(function (s) { s.classList.toggle('terminee', !!faits[s.dataset.etape]); });
+    document.querySelectorAll('[data-lien]').forEach(function (a) { a.classList.toggle('fait', !!faits[a.dataset.lien]); });
+    for (var k in faits) if (faits[k]) n++;
+    document.querySelectorAll('.progression .nb').forEach(function (x) { x.textContent = n; });
+    document.querySelectorAll('.barre i').forEach(function (x) { x.style.width = (100 * n / total) + '%'; });
+  }
+  document.addEventListener('change', function (ev) {
+    var c = ev.target; if (!c.dataset || !c.dataset.fait) return;
+    faits[c.dataset.fait] = c.checked; ecrire('faits', JSON.stringify(faits)); rafraichir();
+  });
+  rafraichir();
+  document.getElementById('imprimer').addEventListener('click', function () { window.print(); });
+})();
+</script>
+</body>
+</html>
